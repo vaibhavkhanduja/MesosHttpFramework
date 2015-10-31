@@ -1,4 +1,7 @@
-__author__ = 'khandv'
+# See LICENSE file for details.
+# Copyright 2015-2015
+
+__author__ = 'Vaibhav Khanduja - VK'
 
 
 class SlaveAddress:
@@ -11,6 +14,7 @@ class SlaveAddress:
         self._hostname = address['hostname']
         self._port = address['port']
 
+
 class SlaveURL:
     _path = None
     _scheme = None
@@ -21,6 +25,7 @@ class SlaveURL:
         self._scheme = url['scheme']
         self._address = SlaveAddress(url['address'])
 
+
 class SlaveResourceRange:
     _begin = None
     _end = None
@@ -28,6 +33,7 @@ class SlaveResourceRange:
     def __init__(self, range):
         self._begin = range['begin']
         self._end = range['end']
+
 
 class SlaveResource:
     _type = None
@@ -42,11 +48,13 @@ class SlaveResource:
         self._name = resource['name']
         self._role = resource['role']
         if self._type == 'SCALAR':
-              self._scaler = resource['scalar']['value']
+            self._scaler = resource['scalar']['value']
         else:
             if self._type == 'RANGES':
-               for val in resource['ranges']['range']:
-                   self._ranges.append(val)
+                for val in resource['ranges']['range']:
+                    self._ranges.append(val)
+
+
 class MesosOffer:
     url = None
     hostname = None

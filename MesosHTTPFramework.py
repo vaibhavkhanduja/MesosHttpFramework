@@ -1,3 +1,7 @@
+# See LICENSE file for details.
+# Copyright 2015-2015
+
+__author__ = 'Vaibhav Khanduja - VK'
 
 import sys
 import httplib
@@ -5,8 +9,8 @@ import json
 
 from MesosOffer import MesosOffer
 
-class chunkReader:
 
+class chunkReader:
     _eventChannel = None
 
     def __init__(self, eventChannel):
@@ -36,8 +40,8 @@ class chunkReader:
             print e
         return chunk_data
 
-class HTTPComm:
 
+class HTTPComm:
     _url = None
 
     def __init__(self, url):
@@ -49,8 +53,8 @@ class HTTPComm:
         try:
             _data = json.dumps(data)
             headers = {"Content-type": "application/json",
-                        "Accept": "application/json",
-                        "Connection": "close"}
+                       "Accept": "application/json",
+                       "Connection": "close"}
             comm = httplib.HTTPConnection(self._url)
             comm.request("POST", api, _data, headers)
             response = comm.getresponse()
@@ -60,7 +64,6 @@ class HTTPComm:
 
 
 class Driver:
-
     _http = None
     _chunkReader = None
     _frameworkId = None
@@ -85,13 +88,13 @@ class Driver:
     def subscribe(self):
 
         data = {
-        "type" : "SUBSCRIBE",
-        "subscribe" : {
-            "framework_info" : {
-                "user" : "root",
-                "name" : "Test Framework"
-            },
-            "force" : True
+            "type": "SUBSCRIBE",
+            "subscribe": {
+                "framework_info": {
+                    "user": "root",
+                    "name": "Test Framework"
+                },
+                "force": True
             }
         }
         eventChannel = self._http.post(data, "/api/v1/scheduler")
@@ -143,6 +146,7 @@ class Driver:
     def error(self, payload):
         print "Error"
         return
+
 
 if __name__ == '__main__':
     print len(sys.argv)
